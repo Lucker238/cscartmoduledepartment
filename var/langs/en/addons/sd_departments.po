@@ -1,1 +1,1 @@
-C:/Users/maxim.s/Desktop/php/thirdPHP/sd_departments/var/langs/en/addons/sd_departments.po
+C:/OSPanel/domains/cscartmoduledepartment/module_sd_departments/var/langs/en/addons/sd_departments.po
