@@ -27,11 +27,11 @@
 
             <div class="sidebar-field">
                 <label for="elm_type">{__("status")}</label>
-                {assign var="items_status" value=""|fn_get_default_statuses:true}
+                {$items_status = ""|fn_get_default_statuses:true}
                 <div class="controls">
                     <select name="status" id="elm_type">
                         <option value="">{__("all")}</option>
-                        {foreach from=$items_status key=key item=status}
+                        {foreach $items_status as $key => $status}
                             <option value="{$key}" {if $search.status == $key}selected="selected"{/if}>{$status}</option>
                         {/foreach}
                     </select>

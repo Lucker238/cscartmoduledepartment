@@ -20,14 +20,13 @@
         <div class="control-group" id="banner_graphic">
             <label class="control-label">{__("image")}</label>
             <div class="controls">
-                {include file="common/attach_images.tpl"
+                {include "common/attach_images.tpl"
                     image_name="department"
                     image_object_type="department"
                     image_pair=$department_data.main_pair
                     image_object_id=$id
                     no_detailed=true
-                    hide_titles=true
-                }
+                    hide_titles=true}
             </div>
         </div>
 
@@ -43,33 +42,41 @@
         <div class="control-group">
             <label class="control-label" for="elm_banner_timestamp_{$id}">{__("creation_date")}</label>
             <div class="controls">
-            {include file="common/calendar.tpl" date_id="elm_banner_timestamp_`$id`" date_name="department_data[timestamp]" date_val=$department_data.timestamp|default:$smarty.const.TIME start_year=$settings.Company.company_start_year extra=$smarty.capture.calendar_disable}
+                {include "common/calendar.tpl" 
+                date_id="elm_banner_timestamp_`$id`" 
+                date_name="department_data[timestamp]" 
+                date_val=$department_data.timestamp|default:$smarty.const.TIME 
+                start_year=$settings.Company.company_start_year 
+                extra=$smarty.capture.calendar_disable}
             </div>
         </div>
-        {include file="common/select_status.tpl" input_name="department_data[status]" id="elm_banner_status" obj_id=$id obj=$department_data hidden=false}
-
+        {include "common/select_status.tpl" 
+        input_name="department_data[status]" 
+        id="elm_banner_status" 
+        obj_id=$id 
+        obj=$department_data 
+        hidden=false}
 
     <div class="control-group">
         <label class="control-label">{__("sd_departments.head")}</label>
         <div class="controls">
-            {include 
-                file="pickers/users/picker.tpl" 
-                but_text=__("sd.departments.add_head_from_users") 
-                data_id="return_users"
-                but_meta="btn"
-                input_name="department_data[user_id]" 
-                user_ids=$department_data.user_id 
-                placement="right"
-                display="radio"
-                view_mode="single_button"
-                user_info=$u_info}
+            {include "pickers/users/picker.tpl" 
+            but_text=__("sd.departments.add_head_from_users") 
+            data_id="return_users"
+            but_meta="btn"
+            input_name="department_data[user_id]" 
+            user_ids=$department_data.user_id 
+            placement="right"
+            display="radio"
+            view_mode="single_button"
+            user_info=$u_info}
         </div>
     </div>
 
     <div class="control-group">
         <label class="control-label">{__("sd_departments.employees")}</label>
         <div class="controls">
-            {include file="pickers/users/picker.tpl"
+            {include "pickers/users/picker.tpl"
              but_text=__("sd_departments.add_employees_from_users") 
              data_id="return_users" 
              but_meta="btn" 
@@ -81,17 +88,24 @@
 
     <!--content_general--></div>
 
-
-
 {capture name="buttons"}
     {if !$id}
-        {include file="buttons/save_cancel.tpl" but_role="submit-link" but_target_form="banners_form" but_name="dispatch[profiles.update_department]"}
+        {include "buttons/save_cancel.tpl" 
+        but_role="submit-link" 
+        but_target_form="banners_form" 
+        but_name="dispatch[profiles.update_department]"}
     {else}
-        {include file="buttons/save_cancel.tpl" but_name="dispatch[profiles.update_department]" but_role="submit-link" but_target_form="banners_form" hide_first_button=$hide_first_button hide_second_button=$hide_second_button save=$id}
-            {capture name="tools_list"}
-                <li>{btn type="list" text=__("delete") class="cm-confirm" href="profiles.delete_department?department_id=`$id`" method="POST"}</li>
-            {/capture}
-            {dropdown content=$smarty.capture.tools_list}
+        {include "buttons/save_cancel.tpl" 
+        but_name="dispatch[profiles.update_department]" 
+        but_role="submit-link" 
+        but_target_form="banners_form" 
+        hide_first_button=$hide_first_button 
+        hide_second_button=$hide_second_button 
+        save=$id}
+        {capture name="tools_list"}
+            <li>{btn type="list" text=__("delete") class="cm-confirm" href="profiles.delete_department?department_id=`$id`" method="POST"}</li>
+        {/capture}
+        {dropdown content=$smarty.capture.tools_list}
     {/if}
 
 {/capture}
@@ -107,12 +121,10 @@
     {$title_end = $department_data.department}
 {/if}
 
-{include file="common/mainbox.tpl"
-    title_start=$title_start
-    title_end=$title_end
-    title=$title
-    content=$smarty.capture.mainbox
-    buttons=$smarty.capture.buttons
-    select_languages=true}
-
-{** banner section **}
+{include "common/mainbox.tpl"
+title_start=$title_start
+title_end=$title_end
+title=$title
+content=$smarty.capture.mainbox
+buttons=$smarty.capture.buttons
+select_languages=true}
