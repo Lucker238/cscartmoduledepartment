@@ -1,0 +1,53 @@
+msgid ""
+msgstr "Project-Id-Version: tygh\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: English\n"
+"Language: en_US"
+
+msgctxt "Addons::name::sd_departments"
+msgid "Simtech Development: Departments"
+msgstr "Simtech Development: Departments"
+
+msgctxt "Addons::description::sd_departments"
+msgid "Allows you to add department."
+msgstr "Allows you to add department."
+
+msgctxt "Languages::sd_departments.departments"
+msgid "Departments"
+msgstr "Departments"
+
+msgctxt "Languages::sd_departments.department"
+msgid "Department"
+msgstr "Department"
+
+msgctxt "Languages::sd_departments.empty_department"
+msgid "Fill in the empty department: [name]"
+msgstr "Fill in the empty department: [name]"
+
+msgctxt "Languages::sd_departments.add_new_department"
+msgid "Add new department"
+msgstr "Add new department"
+
+msgctxt "Languages::sd_departments.add_department"
+msgid "Add department"
+msgstr "Add department"
+
+msgctxt "Languages::sd_departments.employees"
+msgid "Employees"
+msgstr "Employees"
+
+msgctxt "Languages::sd_departments.add_employees_from_users"
+msgid "Add employees from users"
+msgstr "Add employees from users"
+
+msgctxt "Languages::sd_departments.head"
+msgid "Head"
+msgstr "Head"
+
+msgctxt "Languages::sd_departments.add_department"
+msgid "Add department"
+msgstr "Add department"
+
+msgctxt "Languages::sd.departments.add_head_from_users"
+msgid "Add head of department"
+msgstr "Add head of department"
