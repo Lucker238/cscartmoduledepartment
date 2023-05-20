@@ -44,6 +44,10 @@ msgctxt "Languages::sd_departments.head"
 msgid "Head"
 msgstr "Руководитель"
 
-msgctxt "Languages::sd.departments.add_head_from_users"
+msgctxt "Languages::sd_departments.add_head_from_users"
 msgid "Add head of department"
 msgstr "Добавить руководителя отдела"
+
+msgctxt "Languages::sd_departments.departments_menu_description"
+msgid "List of departments that exist in your store"
+msgstr "Список отделов вашего магазина"
