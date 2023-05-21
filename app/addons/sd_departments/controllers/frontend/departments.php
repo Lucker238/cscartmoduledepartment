@@ -3,8 +3,7 @@ use Tygh\Registry;
 
 defined('BOOTSTRAP') or die('Access denied');
 
-if ($mode == 'departments') { 
-
+if ($mode === 'departments') { 
     Tygh::$app['session']['continue_url'] = "departments.departments";
 
     $params = $_REQUEST;
@@ -17,7 +16,6 @@ if ($mode == 'departments') {
     Tygh::$app['view']->assign('columns', 3);
     
     fn_add_breadcrumb(__("sd_departments.departments"));
-
 
 } elseif ($mode === 'department') {
     $department_data = [];
@@ -32,9 +30,8 @@ if ($mode == 'departments') {
     fn_add_breadcrumb(__("sd_departments.departments"), "departments.departments");
     fn_add_breadcrumb($department_data["department"]);
 
-
     $params = $_REQUEST;
     $params['extend'] = ['description'];
 
-Tygh::$app['view']->assign('search', $search);
+    Tygh::$app['view']->assign('search', $search);
 }
