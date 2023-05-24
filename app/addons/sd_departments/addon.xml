@@ -6,6 +6,7 @@
     <position>10</position>
     <status>active</status>
     <has_icon>Y</has_icon>
+    <supplier>Sinikov MD</supplier>
     <queries>
         <item for="install">
             CREATE TABLE IF NOT EXISTS `cscart_departments` (

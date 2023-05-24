@@ -1,9 +1,16 @@
 <?php
 
+use Tygh\Languages\Languages;
 use Tygh\Enum\ObjectStatuses;
 use Tygh\Registry;
-use Tygh\Languages\Languages;
+use Tygh\Enum\SiteArea;
 
+/**
+ * Get departments list
+ * 
+ * @param array params
+ * @return array
+ */
 function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART_LANGUAGE) {
     $default_params = [
         'page' => 1,
@@ -11,7 +18,7 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
     ];
     $params = array_merge($default_params, $params);
 
-    if (AREA == 'C') {
+    if (AREA == SiteArea::STOREFRONT) {
         $params['status'] = ObjectStatuses::ACTIVE;
     }
 
@@ -73,7 +80,13 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
  
     return [$departments, $params];
  }
- 
+
+ /**
+ * Get departments data
+ * 
+ * @param int department_id
+ * @return department
+ */ 
 function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE) {
     $departments = [];
     if(!empty($department_id)) {
@@ -88,7 +101,14 @@ function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE) 
     }
     return $department;
 }
- 
+
+/**
+ * Update department data
+ * 
+ * @param array data 
+ * @param int department_id
+ * @return int department_id
+ */
 function fn_update_department($data, $department_id, $lang_code = DESCR_SL) {
     if (isset($data['timestamp'])) {
         $data['timestamp'] = fn_parse_date($data['timestamp']);
@@ -101,7 +121,7 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL) {
     } else {
         $department_id = $data['department_id'] = db_replace_into('departments', $data);
         foreach (Languages::getAll() as $data['lang_code'] => $v) {
-            db_query("REPLACE INTO ?:department_descriptions ?e", $data);
+            db_replace_into('department_descriptions', $data);
         }
     }
 
@@ -114,7 +134,12 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL) {
     fn_department_add_links($department_id, $users_ids);
     return $department_id;
 }
- 
+
+/**
+ * Delete department
+ * 
+ * @param int department_id
+ */ 
 function fn_delete_department($department_id) {
     if (!empty($department_id)) {
         fn_department_delete_links($department_id);
@@ -123,16 +148,28 @@ function fn_delete_department($department_id) {
     }
 }
 
+/**
+ * Delete departments links
+ * 
+ * @param int department_id
+ * @return
+ */
 function fn_department_delete_links($department_id) {
     db_query('DELETE FROM ?:department_links WHERE department_id = ?i', $department_id);
 }
 
+/**
+ * Add departments links
+ * 
+ * @param int department_id 
+ * @param array users_ids
+ */
 function fn_department_add_links($department_id, $users_ids) {
     if(!empty($users_ids)) {
         $users_ids = explode(',', $users_ids);
         foreach($users_ids as $user_id) {
             $user_data = fn_get_user_info($user_id);
-            db_query("REPLACE INTO ?:department_links ?e", [
+            db_replace_into('department_links', [
                 'department_id' => $department_id,
                 'customers' => $user_data['firstname'] . ' ' . $user_data['lastname'] . '    ' . $user_data['email'],
             ]);
@@ -140,6 +177,11 @@ function fn_department_add_links($department_id, $users_ids) {
     }
 }
 
+/**
+ * Get departments links
+ * 
+ * @param int department_id
+ */
 function fn_department_get_links($department_id) {
     return !empty($department_id) ? db_get_array('SELECT customers FROM ?:department_links WHERE department_id = ?i', $department_id) : [];
 }
