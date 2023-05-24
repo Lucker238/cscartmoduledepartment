@@ -61,7 +61,7 @@
         <label class="control-label">{__("sd_departments.head")}</label>
         <div class="controls">
             {include "pickers/users/picker.tpl" 
-            but_text=__("sd.departments.add_head_from_users") 
+            but_text=__("sd_departments.add_head_from_users") 
             data_id="return_users"
             but_meta="btn"
             input_name="department_data[user_id]" 
